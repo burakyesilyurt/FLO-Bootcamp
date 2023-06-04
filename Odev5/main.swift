@@ -62,6 +62,6 @@ print("""
 """)
 
 print(toplamKar < 0 ? "Toplam Zarar: " : "Toplam Kar: ", toplamKar)
-printString("Genel Toplam: \(toplamKar + miktar)")
+printString("Genel Toplam: \(miktar + toplamKar)")
 byeBye()
 
