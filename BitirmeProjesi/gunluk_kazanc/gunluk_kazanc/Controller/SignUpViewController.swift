@@ -35,17 +35,18 @@ class SignUpViewController: UIViewController {
                     UserDefaults.standard.set(data.user.id, forKey: "UserId")
                     UserDefaults.standard.set(data.user.email, forKey: "UserEmail")
                     UserDefaults.standard.set(data.user.name, forKey: "UserName")
+                    if self.roleSegmentControl.selectedSegmentIndex == 0 {
+                        let vc = self.storyboard?.instantiateViewController(identifier: "CreateProfileViewController")
+                        vc?.modalPresentationStyle = .fullScreen
+                        self.present(vc!, animated: true)
+                    } else {
+                        let vc = self.storyboard?.instantiateViewController(identifier: "employerTabBar") as! CustomTabBarController
+                        vc.setIndex = 0
+                        vc.modalPresentationStyle = .fullScreen
+                        self.present(vc, animated: true)
+                    }
                 }, onFail: { _ in print("Hata") })
-                if self.roleSegmentControl.selectedSegmentIndex == 0 {
-                    let vc = self.storyboard?.instantiateViewController(identifier: "CreateProfileViewController")
-                    vc?.modalPresentationStyle = .fullScreen
-                    self.present(vc!, animated: true)
-                } else {
-                    let vc = self.storyboard?.instantiateViewController(identifier: "employerTabBar") as! CustomTabBarController
-                    vc.setIndex = 0
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true)
-                }
+              
             }
         }, onFail: { _ in
                 let alert = UIAlertController(title: "Hata", message: "Bir Hata Oluştu", preferredStyle: .alert)
